@@ -1,10 +1,11 @@
-## Работа с уровнями изоляции транзакции в PostgreSQL
+## Работа с уровнями изоляции транзакций в PostgreSQL
 
 ### Read committed
 
 `````` sql
 \set AUTOCOMMIT off
-SET TRANSACTION ISOLATION LEVEL READ COMMITTED
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+BEGIN;
 ``````
 
 ![Отключаем автокоммит](files/step_01.png)
@@ -16,13 +17,16 @@ SET TRANSACTION ISOLATION LEVEL READ COMMITTED
 
 ![Создаем запись в таблице в первой сессии, результат выборки во второй сессии](files/step_02.png)
 
+Коммит транзакции в первой сессии:
+
 ![Результат выборки во второй сессии после завершения транзакции в первой сессии](files/step_03.png)
 
 ## Repeatable read
 
 `````` sql
 \set AUTOCOMMIT off
-`SET TRANSACTION ISOLATION LEVEL REPEATABLE READ`
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+BEGIN;
 ``````
 
 В первой сессии создаем запись в БД. В этой сессии изменения будут видны. Во второй сессии новая запись видна не 
