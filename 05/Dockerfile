@@ -1,0 +1,6 @@
+FROM postgres:14
+WORKDIR /app
+COPY . .
+EXPOSE 5432
+ENV POSTGRES_PASSWORD=postgres
+
