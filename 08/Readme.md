@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS ticket_flights_part;
 CREATE TABLE TICKET_FLIGHTS_part (LIKE ticket_flights INCLUDING DEFAULTS INCLUDING constraints) PARTITION BY LIST(fare_conditions);
 ```
 
-Усложним задачу и создадим секционированные под-таблицы по полю `amount` с разбивкой на 2 секционированные таблицы с условием `amount` < 50000, и > 50000 (до максимально возможного по данному полю).
+Усложним задачу и создадим 3 секционированные таблицы по полю `fare_conditions` с разбивкой на 2 секционированные под-таблицы по полю `amount` с условием 0 < `amount` < 50000 и 50000 < `amount` < MAX (максимально возможного по данному полю).
 
 ```sql
 -- partition table by Economy
